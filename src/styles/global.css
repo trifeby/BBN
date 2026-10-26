@@ -27,3 +27,21 @@
 .footer-brand img{height:70px;width:auto;max-width:180px;display:block;object-fit:contain}
 @media(max-width:900px){.brand-logo{height:65px}}
 @media(max-width:620px){.header-inner{height:79px}.mobile-nav nav{top:79px}.brand-logo{height:59px}.footer-brand img{height:67px}}
+
+.hero-doodle {
+    position: relative;
+    z-index: 2;
+    width: 95%;
+    max-width: 700px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .hero-doodle {
+        width: 92%;
+        max-width: 450px;
+    }
+}

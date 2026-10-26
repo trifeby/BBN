@@ -4,6 +4,9 @@ import base64
 root=Path(__file__).parent
 css=(root/'src/styles/global.css').read_text().replace('@import "tailwindcss";','')
 logo_data='data:image/svg+xml;base64,'+base64.b64encode((root/'public/logo-bbn-resmi.svg').read_bytes()).decode()
+doodle_data = 'data:image/png;base64,' + base64.b64encode(
+    (root / 'public/bbn-doodle.png').read_bytes()
+).decode()
 footer_logo_data='data:image/svg+xml;base64,'+base64.b64encode((root/'public/logo-bbn-putih.svg').read_bytes()).decode()
 nav=['Beranda','Tentang BBN','Program','Cerita Budaya','Jejak Karya']
 nav_items=[('#beranda','Beranda'),('#tentang','Tentang BBN'),('#program','Program'),('#cerita','Cerita Budaya'),('#jejak','Jejak Karya')]
@@ -15,7 +18,19 @@ pillar_html=''.join(f'<div class="pillar-card"><span class="pillar-no">{num} / P
 html=f'''<!doctype html><html lang="id"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Preview — Bakul Budaya Nusantara</title><meta name="robots" content="noindex,nofollow"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"/><style>{css}</style><style>.preview-label{{position:fixed;bottom:18px;right:18px;z-index:80;background:#263d34;color:#fff;padding:10px 14px;border-radius:7px;font:600 10px 'DM Sans',sans-serif;letter-spacing:.1em;box-shadow:0 7px 25px #0004}}.page-pill{{font-size:11px;font-weight:700;letter-spacing:.1em;color:#a07c44}}@media(max-width:620px){{.preview-label{{bottom:7px;right:7px;font-size:8px;padding:7px}}}}</style></head>
 <body><a class="skip-link" href="#main">Lewati ke konten utama</a><div class="preview-label">PREVIEW KONSEP · BUKAN WEBSITE LIVE</div>
 <header class="site-header"><div class="container header-inner"><a href="#beranda" class="brand" aria-label="Beranda Bakul Budaya Nusantara"><img src="{logo_data}" width="423" height="209" alt="Logo resmi Bakul Budaya Nusantara" class="brand-logo" /></a><nav class="desktop-nav">{nav_html}</nav><a class="btn btn-dark nav-cta" href="#kolaborasi">Mari Berkolaborasi ↗</a><details class="mobile-nav"><summary aria-label="Buka menu"><span class="hamburger"><i></i><i></i><i></i></span></summary><nav>{nav_html}<a href="#kolaborasi">Mari Berkolaborasi ↗</a></nav></details></div></header>
-<main id="main"><section id="beranda" class="hero"><div class="container hero-inner"><div class="hero-copy"><span class="eyebrow">Yayasan Bakul Budaya Nusantara</span><h1>Budaya <em>Menyatukan</em> Kita.</h1><p>Dari Sebakul, terhubung se-Nusantara. Ruang perjumpaan untuk mengenal, merawat, dan menghidupkan kebudayaan melalui aksi bersama.</p><div class="hero-actions"><a href="#tentang" class="btn btn-dark">Kenali BBN ↗</a><a href="#kolaborasi" class="btn btn-outline">Bangun Kolaborasi ↗</a></div><div class="hero-footnote"><span class="line"></span><span>Budaya dijalani • Budaya diwariskan</span></div></div><div class="hero-visual" aria-label="Ilustrasi anyaman bakul"><div class="weave"><div class="weave-grid"></div><span class="weave-center">B</span></div><div class="visual-note"><strong>Filosofi Sebakul</strong>Ragam manusia, gagasan, dan budaya dalam satu ruang perjumpaan.</div><span class="visual-vertical">DARI SEBAKUL, TERHUBUNG SE-NUSANTARA</span></div></div></section>
+<main id="main"><section id="beranda" class="hero"><div class="container hero-inner"><div class="hero-copy"><span class="eyebrow">Yayasan Bakul Budaya Nusantara</span><h1>Budaya <em>Menyatukan</em> Kita.</h1><p>Dari Sebakul, terhubung se-Nusantara. Ruang perjumpaan untuk mengenal, merawat, dan menghidupkan kebudayaan melalui aksi bersama.</p><div class="hero-actions"><a href="#tentang" class="btn btn-dark">Kenali BBN ↗</a><a href="#kolaborasi" class="btn btn-outline">Bangun Kolaborasi ↗</a></div><div class="hero-footnote"><span class="line"></span><span>Budaya dijalani • Budaya diwariskan</span></div></div><div class="hero-visual" aria-label="Ilustrasi anyaman bakul"><div class="weave">
+
+
+
+<img
+    src="{doodle_data}"
+    class="hero-doodle"
+    alt="Ilustrasi kegiatan Bakul Budaya Nusantara"
+/>
+
+
+
+<div class="visual-note"><strong>Bakul Budaya Nusantara</strong>Sedulur</div><span class="visual-vertical">Sebakul</span></div></div></section>
 <div class="proof-strip"><div class="container proof-inner"><p class="proof-lead">Bersama menghidupkan budaya.</p><div class="proof-item"><span>✳</span> Budaya</div><div class="proof-item"><span>❧</span> Lingkungan</div><div class="proof-item"><span>✦</span> Kebhinekaan</div><div class="proof-item"><span>◌</span> Kemanusiaan</div></div></div>
 <section class="section" id="tentang"><div class="container intro-section"><div><span class="eyebrow">Kenal Lebih Dekat</span><h2 class="intro-title">Satu bakul, <em>banyak cerita.</em></h2></div><div class="intro-body"><p>Bakul adalah wadah. Bagi kami, ia menjadi simbol ruang perjumpaan tempat keberagaman manusia, tradisi, pengetahuan, dan gagasan saling menguatkan.</p><p>Berawal dari semangat berkumpul di lingkungan Fakultas Ilmu Pengetahuan Budaya Universitas Indonesia pada 2022, BBN terus bertumbuh sebagai ruang kolaborasi budaya yang juga merawat lingkungan dan nilai kemanusiaan.</p><a class="text-link" href="#pilar">Kenali empat pilar BBN ↗</a></div></div></section>
 <section class="section section-soft" id="pilar"><div class="container"><div class="section-head"><div class="section-heading"><span class="eyebrow">Arah Gerak Kami</span><h2>Empat pilar, satu semangat.</h2><p>Kebudayaan bertumbuh ketika pengetahuan, alam, keberagaman, dan kemanusiaan dirawat bersama.</p></div></div><div class="pillar-grid">{pillar_html}</div></div></section>
