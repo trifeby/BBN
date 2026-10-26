@@ -1,0 +1,21 @@
+{
+  "name": "bbn-sanity-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "extract": "sanity schema extract"
+  },
+  "dependencies": {
+    "sanity": "^6.17.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "styled-components": "^6.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}

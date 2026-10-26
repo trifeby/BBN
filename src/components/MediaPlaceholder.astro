@@ -1,0 +1,7 @@
+---
+interface Props { label?:string; variant?:'forest'|'ochre'|'sage'|'clay'; imageUrl?:string; alt?:string; aspect?:'landscape'|'square'|'portrait'; class?:string }
+const {label='Foto kegiatan BBN — menunggu aset resmi',variant='forest',imageUrl,alt,aspect='landscape',class:cls=''}=Astro.props;
+---
+<div class:list={['media-art',`media-${variant}`,`media-${aspect}`,cls]}>
+  {imageUrl ? <img class="media-image" src={imageUrl} alt={alt||label} loading="lazy" decoding="async" /> : <><span class="media-ribbon" aria-hidden="true"></span><span class="media-grain" aria-hidden="true"></span><span class="media-symbol" aria-hidden="true">✳</span><span class="media-label">{label}</span></>}
+</div>

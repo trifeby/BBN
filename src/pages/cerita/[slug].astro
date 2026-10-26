@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import MediaPlaceholder from '../../components/MediaPlaceholder.astro';
+import {getStories,prettyDate,pillarDetails,type Story} from '../../lib/content';
+import { toHTML } from '@portabletext/to-html';
+export async function getStaticPaths() {
+  const stories=await getStories();
+  return stories.map(story=>({params:{slug:story.slug},props:{story}}));
+}
+interface Props { story:Story }
+const {story}=Astro.props;
+const rendered = story.body?.length ? toHTML(story.body as any) : '';
+---
+<Base title={story.title} description={story.excerpt} image={story.imageUrl}>
+  <section class="page-hero"><div class="container"><div class="breadcrumb"><a href="/">Beranda</a> / <a href="/cerita/">Cerita Budaya</a> / Artikel</div><span class="eyebrow">{story.pillar ? pillarDetails[story.pillar]?.title : 'Cerita Budaya'} · {prettyDate(story.publishedAt)}</span><h1 style="font-size:clamp(45px,6vw,76px)">{story.title}</h1><p>{story.excerpt}</p></div></section>
+  <section class="section"><article class="story-article container"><MediaPlaceholder imageUrl={story.imageUrl} alt={story.imageAlt} variant="sage" label="Dokumentasi artikel belum tersedia"/><div class="article-body" set:html={rendered}></div>{!rendered && <div class="empty-panel"><strong>Isi artikel sedang dipersiapkan.</strong><p>Editor BBN dapat melengkapinya di Sanity.</p></div>}<a class="back-link" href="/cerita/">← Kembali ke Cerita Budaya</a></article></section>
+</Base>

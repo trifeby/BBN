@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProgramCard from '../components/ProgramCard.astro';
+import {getPrograms,pillarDetails} from '../lib/content';
+const programs=await getPrograms();
+---
+<Base title="Program" description="Program Bakul Budaya Nusantara: Sabtu Sebakul, Sedekah Hutan, Gerak Anak, Bincang-bincang Budaya, dan kolaborasi lintas budaya.">
+  <section class="page-hero"><div class="container"><div class="breadcrumb"><a href="/">Beranda</a> / Program</div><span class="eyebrow">Langkah Bersama</span><h1>Budaya hidup dalam <em>tindakan.</em></h1><p>Setiap program membuka cara berbeda untuk saling mengenal, mempraktikkan budaya, dan memperkuat kepedulian bersama.</p></div></section>
+  <section class="section"><div class="container"><SectionHead eyebrow="Program Pilihan" title="Dari Sebakul, menjadi gerakan." description="Nama dan pengantar program merujuk pada materi internal BBN. Foto serta rincian kegiatan diterbitkan setelah diverifikasi."/><div class="program-grid">{programs.map((program,index)=><div id={program.slug}><ProgramCard program={program} index={index}/></div>)}</div></div></section>
+  <section class="section section-soft"><div class="container"><SectionHead eyebrow="Pilar Misi" title="Empat jalur untuk berkontribusi."/><div class="detail-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">{Object.entries(pillarDetails).map(([key,p])=><div class="detail-card" id={key}><span class="icon">{p.icon}</span><h3>{p.title}</h3><p>{p.description}</p></div>)}</div></div></section>
+  <section class="cta-section"><div class="container cta-inner"><div><span class="eyebrow light">Berkolaborasi</span><h2>Punya gagasan untuk <em>bergerak bersama?</em></h2><p>Inisiatif budaya bisa lahir dari perjumpaan yang sederhana. Mari mengenal kebutuhan dan peluang kolaborasi lebih jauh.</p></div><div class="cta-actions"><a class="btn btn-light" href="/kolaborasi/">Ajukan Kolaborasi ↗</a></div></div></section>
+</Base>

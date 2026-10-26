@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import MediaPlaceholder from '../components/MediaPlaceholder.astro';
+import {getGallery,prettyDate,pillarDetails} from '../lib/content';
+const gallery=await getGallery();
+---
+<Base title="Jejak Karya" description="Arsip dokumentasi, karya, dan rekam jejak aktivitas Bakul Budaya Nusantara yang terverifikasi.">
+  <section class="page-hero"><div class="container"><div class="breadcrumb"><a href="/">Beranda</a> / Jejak Karya</div><span class="eyebrow">Portofolio dan Dokumentasi</span><h1>Jejak perjumpaan, <em>jejak makna.</em></h1><p>Ruang dokumentasi untuk menyimpan karya, memelihara ingatan, dan memperlihatkan perjalanan kolaborasi BBN.</p></div></section>
+  <section class="section"><div class="container"><SectionHead eyebrow="Galeri Kegiatan" title="Cerita dalam gambar." description="Dokumentasi autentik akan ditampilkan setelah dipilih dan disetujui pengurus."/><div class="grid-gallery">{gallery.length ? gallery.map((entry,index)=><figure><MediaPlaceholder imageUrl={entry.imageUrl} alt={entry.imageAlt} variant={index%2?'sage':'forest'} label="Foto kegiatan belum tersedia" aspect="square"/><figcaption>{entry.title}<small>{entry.place?entry.place+' · ':''}{prettyDate(entry.activityDate)}{entry.pillar?' · '+pillarDetails[entry.pillar]?.title:''}</small>{entry.description&&<small style="padding-top:6px">{entry.description}</small>}</figcaption></figure>) : <div class="empty-panel empty-wide"><strong>Arsip visual BBN sedang dikurasi.</strong><p>Galeri belum menampilkan foto contoh milik pihak lain. Pengurus dapat menambahkan dokumentasi foto, tanggal, tempat, deskripsi dan kategori lewat Sanity CMS.</p></div>}</div></div></section>
+  <section class="section section-soft"><div class="container split"><div class="body-copy"><span class="eyebrow">Prinsip Dokumentasi</span><h2>Bukan sekadar kumpulan foto.</h2></div><div class="intro-body"><p>Dokumentasi terbaik menunjukkan apa yang dilakukan, mengapa itu penting, dan bagaimana setiap kegiatan berhubungan dengan misi BBN. Informasi kuantitatif atau mitra hanya ditampilkan bila didukung data yang dapat ditelusuri.</p><a class="text-link" href="/kolaborasi/">Diskusikan kolaborasi ↗</a></div></div></section>
+</Base>

@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import {getSettings} from '../lib/content';
+const settings=await getSettings();
+const sitekey=import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+<Base title="Kolaborasi" description="Bangun kolaborasi budaya dengan Bakul Budaya Nusantara bersama pemerintah, badan penghubung daerah, akademisi, komunitas, dan mitra CSR.">
+  <section class="page-hero"><div class="container"><div class="breadcrumb"><a href="/">Beranda</a> / Kolaborasi</div><span class="eyebrow">Ruang Kolaborasi Nusantara</span><h1>Mari tumbuhkan <em>cerita bersama.</em></h1><p>Setiap lembaga, komunitas, dan individu membawa pengetahuan berharga. Kami membuka ruang percakapan untuk merancang langkah budaya yang bermakna.</p></div></section>
+  <section class="section"><div class="container"><SectionHead eyebrow="Siapa yang Bisa Terlibat" title="Banyak jalan menuju kolaborasi." description="Bentuk kerja sama berikut merupakan penawaran konsep, bukan klaim kemitraan yang sudah berlangsung."/><div class="detail-grid"><div class="detail-card"><span class="icon">⌂</span><h3>Pemerintah dan Daerah</h3><p>Penguatan kegiatan budaya, promosi tradisi, aktivasi lintas daerah, dan program edukasi.</p></div><div class="detail-card"><span class="icon">✎</span><h3>Kampus dan Akademisi</h3><p>Diskusi, literasi budaya, pembelajaran, serta pertukaran pengetahuan dan pengalaman.</p></div><div class="detail-card"><span class="icon">✳</span><h3>Komunitas dan Seniman</h3><p>Ruang pertunjukan, berbagi praktik budaya, dan pengembangan aktivitas kreatif.</p></div><div class="detail-card"><span class="icon">♡</span><h3>CSR dan Mitra Sosial</h3><p>Kolaborasi budaya dan lingkungan yang berorientasi pada keterlibatan masyarakat.</p></div><div class="detail-card"><span class="icon">↗</span><h3>Badan Penghubung Provinsi</h3><p>Pertukaran informasi budaya daerah, pengenalan wastra dan tradisi, serta jaringan kegiatan lintas wilayah.</p></div><div class="detail-card"><span class="icon">◌</span><h3>Masyarakat dan Relawan</h3><p>Partisipasi kegiatan, dukungan keahlian, serta gagasan baik dari berbagai latar belakang.</p></div></div></div></section>
+  <section class="section section-soft"><div class="container partner-panel"><div class="body-copy"><span class="eyebrow">Mulai dari Percakapan</span><h2>Apa yang dapat kita lakukan bersama?</h2><p>Untuk membantu BBN memahami kebutuhan Anda, sampaikan lembaga, daerah, dan gagasan awal. Tim akan menindaklanjuti melalui kontak resmi setelah proses administrasi disiapkan.</p><div class="partner-list"><div class="partner-line">Kirim pengantar dan gagasan</div><div class="partner-line">Diskusikan kebutuhan bersama</div><div class="partner-line">Rumuskan bentuk kerja sama</div></div>{settings.collaborationPdf && <a class="btn btn-outline" style="margin-top:25px" href={settings.collaborationPdf} target="_blank" rel="noopener noreferrer">Unduh profil yayasan ↗</a>}</div>
+    <div class="contact-form" id="formulir"><h3>Ajukan Kolaborasi</h3><p class="form-desc">Data akan digunakan hanya untuk menindaklanjuti pertanyaan terkait kolaborasi. Baca <a href="/privasi/" style="text-decoration:underline">kebijakan privasi</a>.</p>
+      <div id="form-status" class="inline-info" role="status" style="display:none;margin-bottom:16px">Pesan telah diterima oleh penyedia layanan pengiriman. Tindak lanjut akan dilakukan melalui kanal resmi BBN.</div>
+      {sitekey ? <form action="/api/contact" method="POST" accept-charset="UTF-8">
+        <div class="form-field" style="position:absolute;left:-9999px" aria-hidden="true"><label for="bbn-website">Website (jangan diisi)</label><input tabindex="-1" id="bbn-website" name="website" autocomplete="off" /></div>
+        <div class="form-field"><label for="contact-name">Nama <span>*</span></label><input id="contact-name" name="name" required minlength="2" maxlength="120" autocomplete="name" /></div>
+        <div class="form-field"><label for="contact-org">Institusi / Komunitas <span>*</span></label><input id="contact-org" name="organization" required maxlength="150" autocomplete="organization" /></div>
+        <div class="form-field"><label for="contact-email">Email aktif <span>*</span></label><input id="contact-email" name="email" required type="email" maxlength="160" autocomplete="email" /></div>
+        <div class="form-field"><label for="contact-type">Jenis kolaborasi <span>*</span></label><select name="collaborationType" id="contact-type" required><option value="">Pilih kategori</option><option value="pemerintah">Pemerintah / Badan Penghubung</option><option value="akademisi">Pendidikan / Akademisi</option><option value="komunitas">Komunitas / Seniman</option><option value="csr">CSR / Mitra Sosial</option><option value="lainnya">Lainnya</option></select></div>
+        <div class="form-field"><label for="contact-province">Provinsi (opsional)</label><input id="contact-province" name="province" maxlength="100" placeholder="Contoh: DKI Jakarta" /></div>
+        <div class="form-field"><label for="contact-message">Gagasan kerja sama <span>*</span></label><textarea id="contact-message" name="message" required minlength="20" maxlength="3000" placeholder="Tuliskan gagasan dan konteks kerja sama secara singkat..."></textarea></div>
+        <div class="cf-turnstile" data-sitekey={sitekey}></div><script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+        <label class="form-consent"><input type="checkbox" name="consent" value="yes" required /> <span>Saya setuju data yang saya kirim diproses untuk menindaklanjuti permintaan kolaborasi sesuai kebijakan privasi BBN.</span></label>
+        <button class="btn btn-dark" type="submit">Kirim Pengajuan ↗</button><p class="form-note">Validasi keamanan dilakukan pada server. Jangan kirim data sensitif atau dokumen rahasia melalui formulir ini.</p>
+      </form> : <div class="inline-info"><strong>Formulir belum diaktifkan.</strong><br/>Pengurus perlu menyiapkan alamat email resmi, konfigurasi Turnstile, dan layanan pengiriman email sebelum formulir menerima data. {settings.email && <>Sementara itu, silakan hubungi <a href={`mailto:${settings.email}`} style="text-decoration:underline">{settings.email}</a>.</>}</div>}
+    </div>
+  </div></section>
+  <script is:inline>
+    if (new URLSearchParams(window.location.search).get('status') === 'terkirim') {
+      const status = document.getElementById('form-status');
+      if (status) status.style.display = 'block';
+    }
+  </script>
+  <section class="section"><div class="container split"><div><span class="eyebrow">Dokumen dan Kredibilitas</span><h2 class="intro-title">Kolaborasi dimulai dari kepercayaan.</h2></div><div class="intro-body"><p>Profil kelembagaan, legalitas, daftar pengurus, dan publikasi mitra hanya akan tersedia setelah diverifikasi serta mendapat persetujuan untuk ditampilkan. Kami tidak menampilkan logo lembaga calon mitra sebagai bukti kerja sama.</p></div></div></section>
+</Base>

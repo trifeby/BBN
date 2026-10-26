@@ -1,0 +1,5 @@
+---
+interface Props { eyebrow:string; title:string; description?:string; link?:string; linkText?:string }
+const {eyebrow,title,description,link,linkText='Lihat selengkapnya'}=Astro.props;
+---
+<div class="section-head"><div class="section-heading"><span class="eyebrow">{eyebrow}</span><h2>{title}</h2>{description && <p>{description}</p>}</div>{link && <a href={link} class="text-link">{linkText} <span aria-hidden="true">↗</span></a>}</div>

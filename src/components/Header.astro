@@ -1,0 +1,20 @@
+---
+interface Props { logoUrl?: string }
+const {logoUrl} = Astro.props;
+const nav = [{href:'/',name:'Beranda'},{href:'/tentang/',name:'Tentang BBN'},{href:'/program/',name:'Program'},{href:'/cerita/',name:'Cerita Budaya'},{href:'/jejak-karya/',name:'Jejak Karya'}];
+const current = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Bakul Budaya Nusantara — Beranda">
+      <img src={logoUrl || '/logo-bbn-resmi.svg'} width="423" height="209" alt="Bakul Budaya Nusantara" class="brand-logo" decoding="async" />
+    </a>
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      {nav.map((n)=><a href={n.href} aria-current={current===n.href?'page':undefined}>{n.name}</a>)}
+    </nav>
+    <a href="/kolaborasi/" class="btn btn-dark nav-cta">Mari Berkolaborasi <span aria-hidden="true">↗</span></a>
+    <details class="mobile-nav"><summary aria-label="Buka menu navigasi"><span class="hamburger"><i></i><i></i><i></i></span></summary>
+      <nav aria-label="Navigasi seluler">{nav.map(n=><a href={n.href}>{n.name}</a>)}<a href="/kolaborasi/">Mari Berkolaborasi ↗</a></nav>
+    </details>
+  </div>
+</header>

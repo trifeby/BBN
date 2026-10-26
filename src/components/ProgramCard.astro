@@ -1,0 +1,11 @@
+---
+import MediaPlaceholder from './MediaPlaceholder.astro';
+import {pillarDetails,type Program} from '../lib/content';
+interface Props { program:Program; index:number }
+const {program,index}=Astro.props;
+const variants=['forest','ochre','sage','clay'] as const;
+---
+<article class="program-card">
+  <MediaPlaceholder imageUrl={program.imageUrl} alt={program.imageAlt} label={`Foto program ${program.title} — menunggu dokumentasi resmi`} variant={variants[index%4]} aspect="landscape"/>
+  <div class="program-card-content"><span class="program-meta"><span class="mini-dot"></span>{pillarDetails[program.pillar]?.title||'Program Budaya'}</span><h3>{program.title}</h3><p>{program.description}</p><a href={`/program/#${program.slug}`} class="card-link" aria-label={`Lihat informasi ${program.title}`}>Kenali program <span aria-hidden="true">↗</span></a></div>
+</article>

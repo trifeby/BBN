@@ -1,0 +1,15 @@
+---
+import MediaPlaceholder from './MediaPlaceholder.astro';
+import {pillarDetails,prettyDate,type Story} from '../lib/content';
+interface Props { story:Story; index:number }
+const {story,index}=Astro.props;
+const variants=['sage','clay','forest'] as const;
+---
+<article class="story-card">
+  <a href={`/cerita/${story.slug}/`} aria-label={`Baca ${story.title}`}>
+    <MediaPlaceholder imageUrl={story.imageUrl} alt={story.imageAlt} variant={variants[index%3]} label={`Dokumentasi ${story.title} — foto belum tersedia`}/>
+  </a>
+  <div class="story-meta">{story.pillar&&pillarDetails[story.pillar]?.title}<span>{prettyDate(story.publishedAt)}</span></div>
+  <h3><a href={`/cerita/${story.slug}/`}>{story.title}</a></h3><p>{story.excerpt}</p>
+  <a class="card-link" href={`/cerita/${story.slug}/`}>Baca cerita <span aria-hidden="true">↗</span></a>
+</article>

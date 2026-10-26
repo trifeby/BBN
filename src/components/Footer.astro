@@ -1,0 +1,14 @@
+---
+import type {SiteSettings} from '../lib/content';
+interface Props {settings:SiteSettings}
+const {settings}=Astro.props;
+const ig = settings.instagram?.startsWith('http') ? settings.instagram : settings.instagram ? `https://instagram.com/${settings.instagram.replace(/^@/,'')}`: undefined;
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-lead"><a href="/" class="footer-brand" aria-label="Beranda Bakul Budaya Nusantara"><img src="/logo-bbn-putih.svg" width="423" height="209" alt="Bakul Budaya Nusantara" loading="lazy" /></a><span class="eyebrow light">DARI SEBAKUL, TERHUBUNG SE-NUSANTARA</span><h2>Budaya menyatukan <em>kita.</em></h2><p>Wadah untuk saling mengenal, berbagi pengetahuan, dan menghidupkan budaya melalui aksi bersama.</p></div>
+    <div><h3>Jelajahi</h3><a href="/tentang/">Tentang BBN</a><a href="/program/">Program</a><a href="/cerita/">Cerita Budaya</a><a href="/jejak-karya/">Jejak Karya</a></div>
+    <div><h3>Terhubung</h3><a href="/kolaborasi/">Ajukan Kolaborasi</a>{settings.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}{ig && <a href={ig} target="_blank" rel="noopener noreferrer">Instagram ↗</a>}<a href="/privasi/">Privasi & Data</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© {new Date().getFullYear()} Yayasan Bakul Budaya Nusantara.</span><span>Budaya Menyatukan Kita. · Dikembangkan untuk kolaborasi.</span></div>
+</footer>

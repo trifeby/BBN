@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import StoryCard from '../components/StoryCard.astro';
+import {getStories,getActivities,prettyDate} from '../lib/content';
+const [stories,activities] = await Promise.all([getStories(),getActivities()]);
+const upcoming = activities.filter(a=>a.status==='upcoming' && !!a.date && new Date(a.date).getTime()>Date.now());
+---
+<Base title="Cerita Budaya" description="Ruang cerita, agenda, berita, dan literasi kebudayaan dari Bakul Budaya Nusantara.">
+  <section class="page-hero"><div class="container"><div class="breadcrumb"><a href="/">Beranda</a> / Cerita Budaya</div><span class="eyebrow">Catatan dari Sebakul</span><h1>Setiap budaya punya <em>cerita.</em></h1><p>Mendekatkan pengetahuan budaya melalui kabar kegiatan, catatan belajar, dan cerita dari berbagai perjumpaan.</p></div></section>
+  <section class="section"><div class="container"><SectionHead eyebrow="Publikasi" title="Cerita terbaru." description="Artikel akan muncul otomatis ketika pengurus menerbitkannya melalui dashboard CMS."/><div class="story-grid">{stories.length ? stories.map((story,index)=><StoryCard story={story} index={index}/>) : <div class="empty-panel empty-wide"><strong>Belum ada artikel resmi yang diterbitkan.</strong><p>Bagian ini siap terhubung ke Sanity. Tidak ada cerita atau tanggal kegiatan fiktif yang ditampilkan.</p></div>}</div></div></section>
+  <section class="section section-soft"><div class="container"><SectionHead eyebrow="Agenda" title="Mari bertemu di kegiatan berikutnya."/><div class="agenda-list">{upcoming.length ? upcoming.map(activity=><div class="agenda-item"><div class="agenda-date">{prettyDate(activity.date)}</div><div><h3>{activity.title}</h3><p>{activity.place||'Lokasi akan diumumkan'} · {activity.description}</p></div>{activity.registrationUrl && <a class="btn btn-dark" href={activity.registrationUrl} target="_blank" rel="noopener noreferrer">Info Agenda ↗</a>}</div>) : <div class="empty-panel"><strong>Agenda terbaru sedang disiapkan.</strong><p>Pengurus BBN akan memperbarui jadwal resmi di halaman ini.</p></div>}</div></div></section>
+</Base>
