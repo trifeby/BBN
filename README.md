@@ -13,7 +13,9 @@ Konsep: **Budaya Menyatukan Kita** / *Dari Sebakul, Terhubung Se-Nusantara*.
 - Endpoint `functions/api/contact.ts` untuk formulir Cloudflare Pages menggunakan **Turnstile server-side** dan **Resend server-side** bila semua kredensial disiapkan.
 - Metadata SEO, canonical URL, sitemap dinamis, alternatif teks gambar, skip link, navigasi seluler, dan dukungan reduced-motion.
 
-> Penting: foto kegiatan asli, email, nomor kontak, data legal, anggota, angka capaian, dan mitra **belum diisikan**, menunggu verifikasi. Ornamen bakul pada hero adalah ilustrasi konseptual, bukan logo resmi yayasan.
+> **Pembaruan identitas (26 Oktober 2026):** Logo resmi Bakul Budaya Nusantara sudah digunakan di header, footer (varian putih), favicon, dan preview. Seluruh bentuk dan anyaman diekstraksi langsung dari path vektor halaman 2 PDF `Manual Logo BBN`, tanpa menggambar ulang. Identitas warna: hijau `#004D2C`, cokelat `#754C29`, tan `#A97C50`; kuning aplikasi resmi `#FFFF00`. Aset berada di `public/logo-bbn-resmi.svg`, `public/logo-bbn-putih.svg`, `public/logo-bbn-resmi.png`, `public/favicon.svg`. Jika CMS `Identitas & Kontak Resmi > Logo BBN` diisi, gambar dari CMS akan menggantikan logo default di header; hanya masukkan versi yang disetujui.
+
+> Penting: foto kegiatan asli, email, nomor kontak, data legal, anggota, angka capaian, dan mitra **belum diisikan**, menunggu verifikasi. Ornamen bakul pada hero adalah ilustrasi konseptual, berbeda dari logo resmi yang kini dipakai di header/footer.
 
 ## Struktur folder
 
